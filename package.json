@@ -1,0 +1,48 @@
+{
+  "name": "rick-and-morty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "babel.config.js",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.4.3",
+    "apollo-boost": "^0.3.1",
+    "apollo-server": "^2.4.8",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.2.1",
+    "react-apollo": "^2.5.4",
+    "react-bootstrap": "^1.0.0-beta.6",
+    "react-router-dom": "^5.0.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config ./webpack.dev.config.js --open",
+    "server": "nodemon src/datasources/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

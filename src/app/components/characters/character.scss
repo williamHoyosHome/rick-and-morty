@@ -1,0 +1,25 @@
+.row{
+	color: #ffffff;
+	.character_image{
+		display: flex;
+		justify-content: center;
+	}
+	.table_info{
+		margin: 50px auto;
+    border: 1px solid #ffff;
+    border-radius: 15px;
+		div{
+			display: flex;
+		}
+		label{
+			margin: 10px 0 10px 20px;
+    	inline-size: 40%;
+		}
+		span{
+			display: flex;
+			justify-content: left;
+			margin: 10px;
+			inline-size: 50%;
+		}
+	}
+}
