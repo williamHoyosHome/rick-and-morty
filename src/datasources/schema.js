@@ -3,6 +3,27 @@ const axios = require('axios')
 
 const uri = `https://rickandmortyapi.com/api/character`;
 
+// Characters Type
+const CharactersType = new GraphQLObjectType({
+	name: 'Characters',
+	fields: () => ({
+		info: { type: PageInfoType },
+		results: { type: GraphQLList(CharacterType) }
+	})
+})
+
+// PageInfo Type
+const PageInfoType = new GraphQLObjectType({
+	name: 'pageInfo',
+	fields: () => ({
+		count: { type: GraphQLInt },
+		pages: { type: GraphQLInt },
+		next: { type: GraphQLString },
+		prev: { type: GraphQLString }
+	})
+})
+
+
 // Character Type
 const CharacterType = new GraphQLObjectType({
 	name: 'Character',
@@ -39,32 +60,34 @@ const LocationType = new GraphQLObjectType({
 	})
 })
 
-// PageInfo Type
-const PageInfoType = new GraphQLObjectType({
-	name: 'pageInfo',
-	fields: () => ({
-		count: { type: GraphQLInt },
-		pages: { type: GraphQLInt },
-		next: { type: GraphQLInt },
-		prev: { type: GraphQLInt }
-	})
-})
-
 // Root Query
 const RootQuery = new GraphQLObjectType({
 	name: 'RootQueryType',
 	fields: {
 		characters: {
-			type: new GraphQLList(CharacterType),
+			type: new GraphQLList(CharactersType),
+			args: {
+				page: { type: GraphQLInt }
+			},
 			resolve(parent, args){
-				return axios.get(uri)
-					.then(res => res.data.results);
+				return axios.get(`${uri}/?page=${args.page}`)
+					.then(({ data }) => [data])
 			}
 		},
-		character: {
+		charactersId: {
+			type: new GraphQLList(CharacterType),
+			args: {
+				id: { type: GraphQLString }
+			},
+			resolve(parent, args){
+				return axios.get(`${uri}/${args.id}`)
+					.then(res => res.data)
+			}
+		},
+		characterId: {
 			type: CharacterType,
 			args: {
-				id: { type: GraphQLInt }
+				id: { type: GraphQLString }
 			},
 			resolve(parent, args){
 				return axios.get(`${uri}/${args.id}`)
@@ -81,13 +104,13 @@ const RootQuery = new GraphQLObjectType({
 					.then(res => res.data.results)
 			}
 		},
-		pageInfo: {
-			type: new GraphQLList(PageInfoType),
-			resolve(parent, args){
-				return axios.get(uri)
-					.then(res => res.data.info);
-			}
-		}
+		// pageInfo: {
+		// 	type: PageInfoType,
+		// 	resolve(parent, args){
+		// 		return axios.get(uri)
+		// 			.then(res => res.data.info)
+		// 	}
+		// }
 	}
 })
 

@@ -1,7 +1,8 @@
 import React from 'react';
+
 import './index.scss';
 
-function Card({ character: { name, image}}) { 
+function Card({ image, name }) { 
 	return(
 		<div className="card" style={{ 
 			backgroundImage: `url(${image})`}}>

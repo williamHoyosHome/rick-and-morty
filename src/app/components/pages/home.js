@@ -1,40 +1,21 @@
-import React, { Component } from 'react';
-import gql from "graphql-tag";
-import { Query } from 'react-apollo';
+import React, { Component, Fragment } from 'react';
 
 // style
-import './home.scss'
+import './home.scss';
 
 // components
-import Nav from '../navigation/nav'
-import logo from '../../public/image/logo.png';
-
-import Characters from '../characters/characters';
-
-const CHARACTERS_QUERY = gql`
-	query CharactersQuery {
-		characters {
-			id
-			name
-			image
-		}
-	}
-`
+import Nav from '../navigation/component/nav';
+import Logo from '../logo/logo';
+import CharactersContainer from '../characters/container/charactersContainer';
 
 class Home extends Component {
 	render(){
 		return(
-			<React.Fragment>
+			<Fragment>
 				<Nav />
-				<figure>
-					<img src={logo} className="logo" />
-				</figure>
-				<div className="container-fluid">
-					<ul className="row">
-						<Characters />
-					</ul>
-				</div>
-		</React.Fragment>
+				<Logo />
+				<CharactersContainer />
+			</Fragment>
 		)
 	}
 }
